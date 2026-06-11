@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>belajar dom javascript</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 id="title">
+        Sistem Informasi Rumah Sakit
+    </h1>
+    <DIV id="info"></DIV>
+    <div>
+        <h2>Formulir Data Pasien</h2>
+        <input placeholder="masukan data pasien" id="namapasien"/>
+        <button type="button" onclick="simpanPasien()">simpan</button>
+    </div>
+    <table border ="1">
+        <thead>
+            <tr>
+                <th>no</th>
+                <th>nama pasien</th>
+            </tr>
+        </thead>
+        <tbody id="tpasien"></tbody>
+        <p></p>
+    </table>
+    <script>
+        let title = document.getElementById("title").innerText = "SIMRS KMC"
+        console.log(title)
+        
+        
+
+        const pasien = []
+
+        const simpanPasien = () => {
+            const namapasien = document.getElementById("namapasien").value
+            const validateNamaPasien = namapasien.trim()
+
+            if (validateNamaPasien) {
+                pasien.push(validateNamaPasien)
+                alert("pasien berhasil disimpan")
+                document.getElementById("namapasien").value = ''
+                renderTable()
+            } else {
+                alert("nama pasien wajib diisi")
+            }
+        }
+
+        const isiPlaceholder = () => {
+            const input = document.getElementById("namapasien")
+            input.value = input.placeholder
+        }
+
+        const renderTable = () => {
+            let html = ''
+            pasien.forEach((item, index) => {
+                html += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${item}</td>
+                    </tr>
+                `
+            })
+            document.getElementById("tpasien").innerHTML = html
+        }
+    </script>
+</body>
+</html>
